@@ -1,3 +1,4 @@
+//variable declatations and DOM querySelectors
 const balance = document.querySelector(`#balance`)
 const moneyPlus = document.querySelector(`#money-plus`)
 const moneyMinus = document.querySelector(`#money-minus`)
@@ -5,7 +6,7 @@ const list = document.querySelector(`#list`)
 const form = document.querySelector(`form`)
 const text = document.querySelector(`#text`)
 const amount = document.querySelector(`#amount`)
-
+//Local storage try catch block to help data persist
 const storedItems = () =>{
     try{
       const storedExpense =  localStorage.getItem(`expense`)
@@ -15,51 +16,47 @@ const storedItems = () =>{
        return []
     }
 }
+//stores LS conditional in a let variable 
 let transactions = storedItems()
-
-
-function createTransaction(id,text,amount){
+//Little bit of OOP creates classes of transaction 
+class FakeTransactions{
+    constructor (id,text,amount){
+        this.id = id,
+        this.text = text,
+        this.amount = amount
+    }
+ }
+//Function which calls constructor when needed      
+const createTransaction = (id,text,amount)=>{
       
      return new FakeTransactions(id,text,amount);
 }
-class FakeTransactions{
-   constructor (id,text,amount){
-       this.id = id,
-       this.text = text,
-       this.amount = amount
-   }
-}
+//Generates a random number for ID
 const generateId = () => Math.floor(Math.random() * 100000)
-
+//removes element from DOM if filter Bool is met, sets in LS and calls init function
 const removeTransaction = (id) =>{
     transactions = transactions.filter(transaction => transaction.id !== id)
     localStorage.setItem(`expense`,JSON.stringify(transactions))
     return init()
  }
 
-
+//Adds DOM el
 function addTransactionDom(transaction){
-    //may have to scrape the object's 
-    
+    //helps clarify to user if expense or income    
     const sign = transaction.amount < 0 ? `-` : `+`;
     const item = document.createElement('li');
     //add class based on value
     item.classList.add(transaction.amount < 0 ? `minus` : `plus`);
-
+    //format HTML of Li el
     item.innerHTML = 
     `${transaction.text} <span>${sign} ${Math.abs(transaction.amount)}</span>
     <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>`;
-    item.addEventListener(`click`,(e)=>{
-        const delBtn = document.querySelectorAll(`.delete-btn`)
-        if (e.target === delBtn){
-            console.log(`clicked`)
-        }
-    })
+    //append item
     list.appendChild(item);
     
     
 }
-
+//updates DOM el according to transation array content
 const updateValue = ()=>{
     const amounts = transactions.map(transaction => transaction.amount)
     const total = amounts.reduce((acc,item)=>(acc += item), 0)
@@ -83,7 +80,7 @@ const updateValue = ()=>{
 }
 
 
-
+//Initialises app and updates DOM
 function init(){
     list.innerHTML = ``
     if (transactions){
@@ -95,6 +92,7 @@ function init(){
 
 init()
 
+//Input data added to DOM and normalised, LS array edited
 form.addEventListener(`submit`,(e)=>{
     e.preventDefault()
     if ((amount.value.trim() || text.value.trim()) === ``){
