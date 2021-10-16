@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+:root{
+    --box-shadow: 0 0.1rem 0.3rem rgba(0,0,0,0.12), 0 0.1rem 0.2rem rgba(0,0,0,0.24);
+}
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 62.5%;
+    background: #0e765d;
+    color: #fff;
+    margin: 0;
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+}
+.container{
+    margin: 3rem auto;
+    min-height: 100vh;
+    width: 70%;
+   
+}
+
+h2 {
+    font-size: 3.5rem;
+}
+h1{
+    letter-spacing: 0.1rem;
+    margin: 0;
+    font-size: 3rem;
+}
+h3{
+    border-bottom: 0.1rem solid #fff;
+    padding-bottom: 0.1rem;
+    margin: 4rem auto 0;
+    font-size: 2rem;
+}
+h4{
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+.inc-exp-container{
+    background-color: #76CE50;
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+
+}
+
+.inc-exp-container > div{
+    flex: 1;
+    text-align: center;
+}
+.inc-exp-container > div:first-of-type{
+    border-right: 0.1rem solid #dedede;
+}
+.money{
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    margin: 0.5rem 0;
+}
+.money.plus {
+    color: green;
+}
+.money.minus{
+    color: red;
+}
+
+label{
+    display: inline-block;
+    margin: 1rem 0;
+    font-size: 2rem;
+}
+input[type="text"],input[type="number"]{
+    border: 0.1rem solid #fff;
+    border-radius: 0.2rem;
+    font-size: 1.6rem;
+    padding: 1rem;
+    width: 100%;
+}
+.btn {
+    cursor: pointer;
+    background-color: seagreen;
+    box-shadow: var(--box-shadow);
+    color: #fff;
+    font-size: 1.6rem;
+    padding: 10px;
+    width: 100%;
+}
+.btn:focus, .del-btn:focus, input:focus{
+    outline: none;
+}
+#list{
+    list-style: none;
+    padding: 0;
+    margin-bottom: 4rem;
+}
+#list li{
+    background-color: #3D9B83;
+    box-shadow: var(--box-shadow);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+
+}
+#list li.plus{
+    border-right:0.5rem solid green;
+}
+#list li.minus{
+    border-right:0.5rem solid red;
+}
+.delete-btn {
+    cursor: pointer;
+    border-radius: 0.2rem;
+    background-color: #e74c3c;
+    border: 0;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 2rem;
+    padding: 0.1rem 1rem;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease; 
+}
+#list li:hover .delete-btn{
+    opacity: 1;
+}
+
+@media only screen and (max-width: 450px) {
+    h2 {
+      margin: 2rem 0;
+      width: 100%;
+      text-align: center;
+      font-size: 4rem;
+    }
+    .container{
+        margin: 3rem auto;
+        width: 85%;
+        
+  }
+#money-plus, #money-minus, h1{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  
+  }
+  .expense-container{
+      max-width: 50%;
+  }
+  label{
+      font-size: 1.5rem;
+  }
+  .form-control:nth-of-type(2) label{
+      font-size: 1rem;
+  }
+}
